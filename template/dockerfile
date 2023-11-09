@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y software-properties-common
-RUN apt-get install -y curl
+RUN apt-get install -y software-properties-common 
+RUN apt-get install -y curl vim 
 
 # move contents
 WORKDIR /working
