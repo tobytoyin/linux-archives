@@ -1,6 +1,6 @@
 
 // ----- [ Container Varaibles ] ------
-variable "resoource_group_prefix" {
+variable "resource_group_prefix" {
   type = string
   default = "aci-rg"
 }

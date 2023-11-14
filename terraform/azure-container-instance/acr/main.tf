@@ -1,7 +1,7 @@
 // resource group
 resource "azurerm_resource_group" "rg" {
   location = "swedencentral"
-  name = "${var.resoource_group_prefix}-aci"
+  name = "${var.resource_group_prefix}-aci"
 }
 
 // ----------- [ Create Container Registry ] ------------
