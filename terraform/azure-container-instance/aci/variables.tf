@@ -21,7 +21,7 @@ variable "container_name_prefix" {
 variable "image" {
   type        = string
   description = "image URI from our ACR"
-  default     = "containerregistry0131234123.azurecr.io/namespace/hello-world:latest"
+  default     = "containerregistry0131234123.azurecr.io/namespace/hello-world"
 }
 
 variable "port" {
@@ -50,4 +50,22 @@ variable "restart_policy" {
     condition     = contains(["Always", "Never", "OnFailure"], var.restart_policy)
     error_message = "The restart_policy must be one of the following: Always, Never, OnFailure."
   }
+}
+
+variable "rg" {
+  type = map
+  description = "resource group id"
+  default = {
+    name: "aci-rg-aci",
+    location: "swedencentral"
+  }
+}
+
+variable "acr_username" {
+  type = string
+}
+
+variable "acr_password" {
+  type = string
+  sensitive = true
 }
