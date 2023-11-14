@@ -1,0 +1,28 @@
+services:
+  zookeeper:
+    container_name: zookeeper
+    build:
+      context: .
+      dockerfile: dockerfile
+    entrypoint: bin/zookeeper-server-start.sh config/zookeeper.properties
+    networks:
+      - kafka-cluster
+    ports:
+      - 2181:2181
+
+  kafka:
+    build:
+      context: .
+      dockerfile: dockerfile
+    entrypoint: bin/kafka-server-start.sh config/server.properties
+    networks:
+      - kafka-cluster
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    restart: on-failure
+
+networks:
+  kafka-cluster:
+    driver: bridge
