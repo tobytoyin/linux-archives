@@ -19,3 +19,4 @@ RUN echo 'alias logstash="/usr/share/logstash/bin/logstash"' >> ~/.bashrc
 
 # move contents
 COPY . .
+COPY pipelines.yml /etc/logstash/pipelines.yml
