@@ -18,5 +18,4 @@ RUN apt-get update && apt-get install -y logstash
 RUN echo 'alias logstash="/usr/share/logstash/bin/logstash"' >> ~/.bashrc
 
 # move contents
-COPY . .
 COPY pipelines.yml /etc/logstash/pipelines.yml

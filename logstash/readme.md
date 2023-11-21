@@ -4,7 +4,6 @@ following command:
 ```shell
 docker run --rm -it\
   -v $(pwd):/work \
-  -v $(pwd)/scripts/:/etc/logstash/conf.d \
   logstash \
   bash
 ```
