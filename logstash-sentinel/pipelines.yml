@@ -1,0 +1,5 @@
+- pipeline.id: main
+  path.config: "/etc/logstash/conf.d/*.conf"
+
+- pipeline.id: myPipelines
+  path.config: "/work/scripts/**/*.conf"
