@@ -1,4 +1,4 @@
-`sample-log.json` is a sample DER log for the sentinel table.
+`sample-log.json` is a sample DCR log for the sentinel table.
 
 To use this container:
 
@@ -13,5 +13,5 @@ docker run --rm -it\
 
 Run in container:
 ```shell
-logstash -f /work/scripts/sentinel-pipeline.conf
+logstash -f /work/scripts/<confName>.conf
 ```
