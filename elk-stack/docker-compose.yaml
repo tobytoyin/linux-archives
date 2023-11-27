@@ -1,17 +1,27 @@
 services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.1
-    container_name: elasticsearch
-    ports:
-      - 9200:9200
-    mem_limit: 1GB
-
-  filebeats:
+  filebeat:
     image: docker.elastic.co/beats/filebeat:8.11.1
+    container_name: filebeat
+    user: root
+    volumes:
+      - "./filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro"  # configuration
+      - "./filebeat/log:/var/log"  # listen to log files in this mountpath
     depends_on:
-      - elasticsearch
-    container_name: filebeats
+      - logstash
     links:
-      - elasticsearch
-    command: |
-      setup -E output.elasticsearch.hosts = ["elasticsearch:9200"]
+      - logstash
+    network_mode: bridge
+    entrypoint: filebeat
+    command: --strict.perms=false
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.1
+    container_name: logstash
+    ports:
+      - 5044:5044
+    network_mode: bridge
+    volumes:
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
+      - ./logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+    command: -f /usr/share/logstash/pipeline/hello-world.conf

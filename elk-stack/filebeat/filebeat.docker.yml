@@ -1,0 +1,11 @@
+# listener to this glob pattern
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/*.log
+
+# output filebeats logs to logstash
+output.logstash:
+  enabled: true
+  hosts: ["logstash:5044"]
