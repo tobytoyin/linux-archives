@@ -1,0 +1,17 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.1
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+    mem_limit: 1GB
+
+  filebeats:
+    image: docker.elastic.co/beats/filebeat:8.11.1
+    depends_on:
+      - elasticsearch
+    container_name: filebeats
+    links:
+      - elasticsearch
+    command: |
+      setup -E output.elasticsearch.hosts = ["elasticsearch:9200"]
