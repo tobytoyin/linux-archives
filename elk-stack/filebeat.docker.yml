@@ -8,8 +8,8 @@ filebeat.config:
 #     - type: docker
 #       hints.enabled: true
 
-processors:
-  - add_cloud_metadata: ~
+# processors:
+#   - add_cloud_metadata: ~
 
 filebeat.inputs:
   - type: log
